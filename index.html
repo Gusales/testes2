@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GeoLocation</title>
+	<meta charset="utf-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<style type="text/css">
+		.card{
+			text-align: center;
+			width: 90%;
+		}
+		.alert{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row d-none d-sm-block d-lg-none">
+					<div class="col-xs-12">
+					<div class="card">
+  					<div class="card-body">
+  						<h1>Primeira Posição</h1>
+					<button onclick="pos1()" class="btn btn-outline-success">Start</button>
+					<input type="text" id="pv1"></input>
+					<h1>Segunda Posição</h1>
+					<button onclick="pos2()" class="btn btn-outline-success">GET</button>
+					<input type="text" id="pv2"></input>
+					<h1>Calcular</h1>
+					<button onclick="calc()" class="btn btn-outline-success">Calc</button>
+					<p id="textpos"></p>
+					<textarea type="text" id="pvF"></textarea>
+  					</div>
+					</div>
+			</div>
+		</div>	
+	</div>
+		 <div class="row d-none d-sm-none d-lg-block">
+			<div class="alert alert-danger" role="alert">Opa!<br> Esse dispositvo não possue os requisitos básicos para esse site!</div>
+		</div> 
+	</div>
+</body>
+<script type="text/javascript">
+	var posi1;
+	var posi2;
+	var posifinal;
+	function pos1(){
+		navigator.geolocation.getCurrentPosition(function(position){
+		posi1 = position.coords.altitude;
+		console.log(posi1);
+		document.getElementById("pv1").value = posi1;
+		});
+	}
+		function pos2(){
+		navigator.geolocation.getCurrentPosition(function(position){
+		posi2 = position.coords.altitude;
+		console.log(posi2);
+		document.getElementById("pv2").value = posi2;
+		});
+	}
+		function calc(){
+			if (posi1 > posi2) {
+			document.getElementById("pvF").value = posi1 - posi2;
+		}
+
+		else if(posi2 > posi1){
+			document.getElementById("pvF").value = posi2 - posi1;
+		}
+		else if(posi1 == posi2){
+			document.getElementById("pvF").value = "As alturas são as mesmas " + posi1;
+		}
+		}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</html>
+
+<!-- 
+AVISOS!
+Esse site, não sei o por que, não funciona no google chrome de celulares. Use qualquer outro navegador, Opera Gx Mobile, FireFox, Samnsung Internet Explorer.
+ -->
